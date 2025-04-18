@@ -7,7 +7,7 @@ function SignUp({ authfun }) {
 
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
-  let [phone, setPhone] = useState('');
+  let [phoneno, setPhone] = useState('');
   let [password, setPassword] = useState('');
   // let [message, setMessage] = useState('')
 
@@ -18,7 +18,7 @@ function SignUp({ authfun }) {
     const userData = {
       username,
       email,
-      phone,
+      phoneno,
       password
     };
 

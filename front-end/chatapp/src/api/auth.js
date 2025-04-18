@@ -1,13 +1,13 @@
 import axios from "axios";
-// require('dotenv').config();
 
-const URL = 'http://localhost:5000/api/'
+
+const URL = 'http://localhost:5000/api'
 
 export const signUp =  async (data)=>{
     try{
         console.log("Sending data to:", `${URL}/adduser`, "Payload:", data)
 
-        let response = await axios.get(`${URL}/adduser`, data)
+        let response = await axios.post(`${URL}/adduser`, data)
 
          console.log("API Response:", response.data);
          
@@ -20,9 +20,13 @@ export const signUp =  async (data)=>{
 
 }
 
-export const signIn = async(data)=>{
+export const signIn = async(data, navigate)=>{
     try {
         let response  = await axios.post(`${URL}/loginuser`, data)   
+        if(response){
+            navigate('home');
+        }
+        alert(response.data.message)
         return response.data
 
     } catch (error) {

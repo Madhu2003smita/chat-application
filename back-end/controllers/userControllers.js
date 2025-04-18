@@ -1,6 +1,5 @@
 const User = require('../models/user')
 require('dotenv').config();
-const bcrypt = require('bcrypt');
 const jwttoken = require('jsonwebtoken')
 
 
@@ -19,6 +18,7 @@ exports.login = ( async (req, res)=>{
    
 try{
     const {username, password} = req.body;
+    console.log(username, password);
     let user = await User.findOne({username});
     if(!user){
         res.json({message:'user is not registered yet'});
