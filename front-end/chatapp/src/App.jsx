@@ -3,6 +3,9 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+'use client'
+
+import { Toaster } from 'sonner'
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -22,6 +25,7 @@ function App() {
           <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
+      <Toaster richColors position="bottom-right" /> {/* Snackbar here */}
     </div>
   );
 }
