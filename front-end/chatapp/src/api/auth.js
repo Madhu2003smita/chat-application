@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { toast } from 'sonner';
 
 const URL = 'http://localhost:5000/api'
 
@@ -23,13 +23,22 @@ export const signUp =  async (data)=>{
 export const signIn = async(data, navigate)=>{
     try {
         let response  = await axios.post(`${URL}/loginuser`, data)   
-        if(response){
-            navigate('home');
+        let result = response.data
+        if(result.success){
+            toast.success(result.message || "Login successful!");
+            console.log('hey mc this is your token', result.token);
+            localStorage.setItem('token', result.token)
+            
+            navigate('/home');
+            
+        }else{
+
+            toast.error(result.message || "Login failed!");
         }
-        alert(response.data.message)
-        return response.data
 
     } catch (error) {
-        throw error;
+        toast.error("An error occurred. Please try again.");
+        console.error('Sign-in error', error);
+        
     }
 }
